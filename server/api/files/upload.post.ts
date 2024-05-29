@@ -13,5 +13,5 @@ export default eventHandler(async (event) => {
   ensureBlob(file, { maxSize: '100MB' })
 
   // Upload file to blob storage using the custom file name
-  return hubBlob().put(filename, file, { authorname: author, email: mail  }, { addRandomSuffix: true })
+  return hubBlob().put(filename, file, { authorname: author, email: mail  })
 })
