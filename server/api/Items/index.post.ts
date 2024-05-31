@@ -1,6 +1,5 @@
 export default eventHandler(async (event) => {
   const {
-    id,
     reorder,
     stock,
     weight,
@@ -29,14 +28,12 @@ export default eventHandler(async (event) => {
     desc,
     grp,
     dimen,
-    created_at,
   } = await readBody(event);
   const db = hubDatabase();
 
   await db
     .prepare(`
       INSERT INTO Items (
-        id,
         reorder,
         stock,
         weight,
@@ -64,16 +61,14 @@ export default eventHandler(async (event) => {
         primaryimg,
         desc,
         grp,
-        dimen,
-        created_at
+        dimen
       ) VALUES (
         ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
         ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        ?, ?, ?, ?, ?, ?, ?, ?
       )
     `)
     .bind(
-      id,
       reorder,
       stock,
       weight,
@@ -101,8 +96,7 @@ export default eventHandler(async (event) => {
       primaryimg,
       desc,
       grp,
-      dimen,
-      created_at
+      dimen
     )
     .run();
 
