@@ -32,7 +32,6 @@ export default eventHandler(async () => {
       desc TEXT,
       grp TEXT,
       dimen TEXT,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
 
