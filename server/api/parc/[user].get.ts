@@ -1,8 +1,8 @@
 export default eventHandler(async (event) => {
-    const id = getRouterParam(event, 'id')
-    const db = hubDatabase()
-  
-    const message = await db.prepare('SELECT * FROM parc WHERE id = ?', ).bind(id).first()
+  const user = getRouterParam(event, 'user')
+  const db = hubDatabase()
 
-    return message
-  })
+  const message = await db.prepare('SELECT * FROM parc WHERE user = ?', ).bind(user).first()
+
+  return message
+})
