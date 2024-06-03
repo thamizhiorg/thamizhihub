@@ -1,28 +1,24 @@
 export default eventHandler(async (event) => {
-  const { title, createdtime, collid, databaseid, siteid, user, status } = await readBody(event);
+  const { title, currentdb, siteid, email, posts } = await readBody(event);
   const id = getRouterParam(event, 'id');
   const db = hubDatabase();
 
   const result = await db
     .prepare(`
-      UPDATE parc SET
+      UPDATE parf SET
         title = ?,
-        createdtime = ?,
-        collid = ?,
-        databaseid = ?,
+        currentdb = ?,
         siteid = ?,
-        user = ?,
-        status = ?
+        email = ?,
+        posts = ?
       WHERE id = ?
     `)
     .bind(
       title,
-      createdtime,
-      collid,
-      databaseid,
+      currentdb,
       siteid,
-      user,
-      status,
+      email,
+      posts,
       id
     )
     .run();
