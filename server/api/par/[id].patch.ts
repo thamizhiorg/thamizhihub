@@ -2,7 +2,7 @@ export default eventHandler(async (event) => {
   const {
     type,
     plan,
-    userid,
+    email,
     url,
     size,
     lastsync,
@@ -21,7 +21,7 @@ export default eventHandler(async (event) => {
       UPDATE par SET
         type = ?,
         plan = ?,
-        userid = ?,
+        email = ?,
         url = ?,
         size = ?,
         lastsync = ?,
@@ -36,7 +36,7 @@ export default eventHandler(async (event) => {
     .bind(
       type,
       plan,
-      userid,
+      email,
       url,
       size,
       lastsync,
