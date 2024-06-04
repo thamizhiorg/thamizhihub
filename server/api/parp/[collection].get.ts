@@ -1,8 +1,11 @@
-export default eventHandler(async (event) => {
-    const collection = getRouterParam(event, 'collection')
-    const db = hubDatabase()
+  export default eventHandler(async (event) => {
+    const collection = getRouterParam(event, 'collection');
+    const db = hubDatabase();
   
-    const message = await db.prepare('SELECT * FROM parp WHERE collection = ?', ).bind(collection).all()
-
-    return message
-  })
+    const result = await db.prepare('SELECT * FROM parp WHERE collection = ?', ).bind(collection).all(); 
+  
+    // Extract only the row data
+    const rowData = result.results; 
+  
+    return rowData;
+  });
